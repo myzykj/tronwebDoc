@@ -61,17 +61,6 @@ If the contract ABI does not exist on the chain, Please invoke loadAbi function 
 
 ------------------------------------------------------------------------------
 
-trigger a contract
-=================
-
-Trigger a smart contract.
-
-| Use ``call`` to execute a ``pure`` or ``view`` smart contract method.
-| Use ``send`` to execute a ``non-pure`` or ``modify`` smart contract method.
-| Please refer to method.call(), method.send().
-
-------------------------------------------------------------------------------
-
 
 tronweb.contract().new
 =========================
@@ -176,14 +165,14 @@ Example
 
 -----------------------------------------------------------------------------
 
-contract().method
+Trigger a smart contract
 =========================
 
 After creating a contract instance, you can execute the contract's methods.
 
 | Use ``call`` to execute a ``pure`` or ``view`` smart contract method.
 | Use ``send`` to execute a ``non-pure`` or ``modify`` smart contract method.
-| Please refer to method.call(), method.send().
+| Please refer to call(), send().
 
 There are two ways to create a contract instance:
 
@@ -330,111 +319,5 @@ Example
   }
 
   triggercontract();
-
-------------------------------------------------------------------------------
-
-watch()
-========
-
-Use watch to listen for events emitted by a smart contract method. You can define functions to be executed when certain events are caught.
-
--------
-Usage
--------
-
-.. code-block:: javascript
-
-  let contract = await tronWeb.contract.at('contractAddress'); 
-  contract.eventMethod().watch((err, event) => {
-      if (err){
-      return console.error('Error with "method" event:', err);
-    }
-    if (event) { 
-        // some function
-    }
-  });
-
--------
-Parameters
--------
-
-No need to pass parameters
-
--------
-Returns
--------
-
-Object
-
--------
-Example
--------
-
-.. code-block:: javascript
-
-  //Example 1
-  async function triggercontract(){
-      try {
-          let instance = await tronWeb.contract().at('TQQg4EL8o1BSeKJY4MJ8TB8XK7xufxFBvK');
-        
-          instance.Transfer().watch((err, eventResult) => {
-              if (err) {
-                  return console.error('Error with "method" event:', err);
-              }
-              if (eventResult) { 
-                  console.log('eventResult:',eventResult);
-              }
-            });
-
-          let res = await instance.transfer('TWbcHNCYzqAGbrQteKnseKJdxfzBHyTfuh',500).send({
-              feeLimit:100_000_000,
-              callValue:0,
-              shouldPollResponse:true
-          });
-          console.log(res);
-
-      } catch (error) {
-          console.log(error);
-      }
-  }
-  triggercontract();
-
-  //Example 2
-  async function triggercontract(){
-      try {
-          let instance = await tronWeb.contract().at('TQQg4EL8o1BSeKJY4MJ8TB8XK7xufxFBvK');
-        
-          instance["Transfer"]().watch((err, eventResult) => {
-              if (err) {
-                  return console.error('Error with "method" event:', err);
-              }
-              if (eventResult) { 
-                  console.log('eventResult:',eventResult);
-              }
-            });
-
-          let res = await instance.transfer('TWbcHNCYzqAGbrQteKnseKJdxfzBHyTfuh',500).send({
-              feeLimit:100_000_000,
-              callValue:0,
-              shouldPollResponse:true
-          });
-          console.log(res);
-
-      } catch (error) {
-          console.log(error);
-      }
-  }
-  triggercontract();
-
-.. list-table::
-   :widths: 50 50
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - err
-     - Error
-   * - event
-     - Event Name emitted from the Smart Contract.
 
 ------------------------------------------------------------------------------
