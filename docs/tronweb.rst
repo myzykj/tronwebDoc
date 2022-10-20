@@ -65,21 +65,20 @@ Object that allows you to convert between hex / base58 and privatekey representa
 -------
 tronWeb.address.toHex
 -------
-==========================================
 
 Convert Base58 format addresses to Hex.
 
 -------
 Usage
--------
+^^^^^^^^^^^
 
 .. code-block:: javascript
 
   tronWeb.address.toHex()
 
---------------
+^^^^^^^^^^^
 Parameters
---------------
+^^^^^^^^^^^
 
 address-base58 format
 
