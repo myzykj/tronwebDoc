@@ -11,4 +11,5 @@ TronWeb aims to deliver a unified, seamless development experience influenced by
    tronweb
    tronweb-trx
    tronweb-transactionBuilder
+   tronweb-contract
    tronweb-utils
